@@ -1,6 +1,6 @@
 ## BTC Index Price Oracle 
 ### To start building oracles
-1. Clone
+1. Clone https://github.com/zapproject/FeedArbitration.git
 2. in FeedArbitration:
     - cd ZapContracts
     - truffle migrate (specify network) 
