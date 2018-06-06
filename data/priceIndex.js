@@ -1,13 +1,28 @@
 /**
- * Get price index for bitcoin
+ * Get coins price from tickers endpoint of gdax
  * Based on multiple exchanges for data's feeds
 */
+let requests = require("request-promise");
+const APIURL = "https://api.gdax.com"
 
-async function getBTCPrice(){
-    return 10000
+async function getTickerPrice(primary, secondary){
+    primary = primary.toUpperCase();
+    secondary = secondary.toUpperCase();
+    let response = await requests({
+        uri:`${APIURL}/products/${primary}-${secondary}/ticker`,
+        headers : {
+            'User-Agent':'Request-Promise'
+        },
+        json:true
+    });
+    return response
 }
 
+//
+// module.exports = {
+//     getBTCPrice
+// }
 
-module.exports = {
-    getBTCPrice
-}
+getTickerPrice("BTC","USD")
+.then(res=>{console.log(res)})
+.catch(err=>{console.error(err)});
